@@ -4,7 +4,7 @@ const features = [
   {
     icon: '🤖',
     title: 'AI-Powered Enhancement',
-    desc: 'Hugging Face LLM rewrites your bullet points with action verbs and quantifiable results.',
+    desc: 'Groq AI (Llama 3.3 70B) rewrites your bullet points with action verbs and quantifiable results.',
   },
   {
     icon: '✅',

@@ -233,7 +233,7 @@ export default function Builder() {
               <div className="w-16 h-16 border-4 border-brand-200 border-t-brand-600 rounded-full animate-spin mx-auto mb-6" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">AI is crafting your resume…</h3>
               <p className="text-gray-500 text-sm">
-                Hugging Face model is rewriting your content with ATS-optimized bullet points.
+                Groq AI (Llama 3.3) is rewriting your content with ATS-optimized bullet points.
                 <br />This may take 20–40 seconds on the free tier.
               </p>
             </div>
