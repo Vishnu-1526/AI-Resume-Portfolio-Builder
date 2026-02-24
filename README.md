@@ -30,11 +30,4 @@ An AI-powered, ATS-friendly resume builder that enhances your resume using a Lar
 | Storage | Browser localStorage |
 
 
-## 🙏 Acknowledgements
-
-- [Groq](https://groq.com) for blazing-fast LLM inference
-- [Meta AI](https://ai.meta.com) for the Llama 3.3 model
-- [Vercel](https://vercel.com) for seamless deployment
-- [Tailwind CSS](https://tailwindcss.com) for the utility-first styling
-
 
