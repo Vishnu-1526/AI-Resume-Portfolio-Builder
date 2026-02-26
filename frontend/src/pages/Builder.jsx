@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { enhanceResume } from '../api/resumeApi.js';
 
 // ─── Initial State ────────────────────────────────────────────────────────────
@@ -18,15 +18,16 @@ const STEPS = ['Personal Info', 'Experience', 'Education', 'Skills & JD', 'Gener
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Builder() {
   const navigate = useNavigate();
+  const { state: incoming } = useLocation();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const [personalInfo, setPersonalInfo] = useState(INIT_PERSONAL);
-  const [experiences, setExperiences] = useState([{ ...INIT_EXP }]);
-  const [educations, setEducations] = useState([{ ...INIT_EDU }]);
-  const [skills, setSkills] = useState('');
-  const [jobDescription, setJobDescription] = useState('');
+  const [personalInfo, setPersonalInfo] = useState(incoming?.personalInfo || INIT_PERSONAL);
+  const [experiences, setExperiences] = useState(incoming?.experiences || [{ ...INIT_EXP }]);
+  const [educations, setEducations] = useState(incoming?.educations || [{ ...INIT_EDU }]);
+  const [skills, setSkills] = useState(incoming?.rawSkills || '');
+  const [jobDescription, setJobDescription] = useState(incoming?.jobDescription || '');
 
   // ── Helpers ──────────────────────────────────────────────────────────────
   const updateExp = (i, field, value) =>
@@ -55,7 +56,7 @@ export default function Builder() {
         jobDescription,
       });
       navigate('/preview', {
-        state: { enhanced, personalInfo, educations, rawSkills: skills },
+        state: { enhanced, personalInfo, educations, experiences, rawSkills: skills, jobDescription },
       });
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');

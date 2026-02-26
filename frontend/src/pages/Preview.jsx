@@ -7,6 +7,16 @@ import { savePortfolio } from '../utils/portfolio.js';
 export default function Preview() {
   const { state } = useLocation();
   const navigate = useNavigate();
+
+  const goEdit = () => navigate('/builder', {
+    state: {
+      personalInfo: state?.personalInfo,
+      experiences: state?.experiences,
+      educations: state?.educations,
+      rawSkills: state?.rawSkills,
+      jobDescription: state?.jobDescription,
+    },
+  });
   const [portfolioLink, setPortfolioLink] = useState('');
   const [copied, setCopied] = useState(false);
 
@@ -51,9 +61,9 @@ export default function Preview() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Link to="/builder" className="btn-secondary text-sm">
+          <button onClick={goEdit} className="btn-secondary text-sm">
             ← Edit Resume
-          </Link>
+          </button>
           <button
             onClick={handleCreatePortfolio}
             className="btn-secondary text-sm flex items-center gap-2 border-purple-400 text-purple-600 hover:bg-purple-50"
@@ -126,7 +136,7 @@ export default function Preview() {
           Not satisfied? Go back and tweak your information, then regenerate.
         </p>
         <div className="flex justify-center gap-4 mt-3">
-          <Link to="/builder" className="btn-secondary text-sm">← Rebuild Resume</Link>
+          <button onClick={goEdit} className="btn-secondary text-sm">← Rebuild Resume</button>
           <button onClick={() => toPDF()} className="btn-primary text-sm">
             ⬇ Download PDF
           </button>
